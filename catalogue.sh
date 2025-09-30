@@ -1,9 +1,4 @@
-#!/bin/bash
-source ./common.sh
-check_root
-app_name=catalogue
-
-# Create .service file if missing
+# Ensure service file exists
 if [ ! -f "$SCRIPT_DIR/$app_name.service" ]; then
 cat <<EOF | sudo tee $SCRIPT_DIR/$app_name.service
 [Unit]
