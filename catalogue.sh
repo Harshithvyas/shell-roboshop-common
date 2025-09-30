@@ -7,13 +7,13 @@ app_setup
 nodejs_setup
 systemd_setup
 
-cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
-VALIDATE $? "Install MongoDB client"
+cp $SCRIPT_DIR/mongo-repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Copy MongoDB repo"
 
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
-INDEX=$(mongodb.harshithdaws86s.fun --quiet --eval "db.getMongo().getDBNames().indexof('catalogue')")
+INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
    VALIDATE $? "Load $app_name products"
