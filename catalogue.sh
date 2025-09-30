@@ -1,13 +1,11 @@
 #!/bin/bash
-
 source ./common.sh
 check_root
-
 app_name=catalogue
 
-# Create service file if missing
+# Create .service file if missing
 if [ ! -f "$SCRIPT_DIR/$app_name.service" ]; then
-  cat <<EOF | sudo tee $SCRIPT_DIR/$app_name.service
+cat <<EOF | sudo tee $SCRIPT_DIR/$app_name.service
 [Unit]
 Description=Catalogue Service
 After=network.target
