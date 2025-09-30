@@ -1,5 +1,6 @@
+cat <<EOF | sudo tee ~/shell-roboshop-common/user.service
 [Unit]
-Description=Catalogue Service
+Description=User Service
 After=network.target
 
 [Service]
@@ -10,3 +11,5 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+EOF
+
