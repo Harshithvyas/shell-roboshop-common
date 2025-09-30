@@ -1,14 +1,14 @@
+cat <<EOF | sudo tee ~/shell-roboshop-common/user.service
 [Unit]
-Description = User Service
+Description=User Service
+After=network.target
+
 [Service]
-User=roboshop
-Environment=MONGO=true
-// highlight-start
-Environment=REDIS_URL='redis://redis.harshithdaws86s.fun:6379'
-Environment=MONGO_URL="mongodb://mongodb.harshithdaws86s.fun:27017/users"
-// highlight-end
+User=ec2-user
+Environment=MONGODB_HOST=mongodb.harshithdaws86s.fun
 ExecStart=/bin/node /app/server.js
-SyslogIdentifier=user
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
+EOF
