@@ -1,0 +1,15 @@
+cat <<EOF | sudo tee ~/shell-roboshop-common/user.service
+[Unit]
+Description=User Service
+After=network.target
+
+[Service]
+User=ec2-user
+Environment=MONGODB_HOST=mongodb.harshithdaws86s.fun
+ExecStart=/bin/node /app/server.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
